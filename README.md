@@ -1,6 +1,8 @@
 # XCX Language Support
 
-Rich language support for the **XCX 3.0** programming language in Visual Studio Code.
+Rich language support for the **XCX 4.0** programming language in Visual Studio Code.
+
+[🌐 Website](https://xcxlang.com) · [📦 PAX Registry](https://pax.xcxlang.com) · [▶ Playground](https://playground.xcxlang.com) · [GitHub](https://github.com/xcxlang-org/xcx)
 
 ## Features
 
@@ -21,14 +23,14 @@ The extension highlights:
 - **Types** — `i`, `f`, `s`, `b` (and long forms `int`, `float`, `str`, `bool`), `array`, `set`, `map`, `table`, `json`, `date`, `fiber:T`, `database`.
 - **Set domains** — `N`, `Z`, `Q`, `S`, `B`, `C` after `set:`.
 - **Column attributes** — `@auto`, `@pk`, `@unique`, `@optional`, `@default`, `@fk` in table column definitions.
-- **Built-in modules** — `crypto`, `net`, `env`, `store`, `random`, `date`, `input` (when used as `module.method`).
-- **Built-in functions** — `halt`, `alert`, `error`, `fatal`, `store`, `random`, `choice`, `input`.
+- **Built-in modules** — `crypto`, `net`, `env`, `store`, `random`, `date`, `input`, `perf` (when used as `module.method`).
+- **Built-in functions** — `halt`, `alert`, `error`, `fatal`, `store`, `random`, `choice`, `input`, `perf`.
 - **Operators** — arithmetic, comparison, logical (`AND`, `OR`, `NOT`, `HAS`, `!!`, `&&`, `||`), set (`UNION`, `INTERSECTION`, `DIFFERENCE`, `SYMMETRIC_DIFFERENCE`, `∪`, `∩`, `\`, `⊕`), I/O (`>!`, `>?`), digit concatenation (`++`), and special XCX operators (`->`, `<->`, `<=>`, `::`, `++`).
 - **Decorators** — `@step`, `@wait`.
 - **Terminal commands** — `.terminal !clear`, `!exit`, `!run`, `!raw`, `!normal`, `!cursor`, `!move`, `!write`.
 - **Literals** — integers, floats, booleans, strings, raw JSON blocks (`<<< ... >>>`).
 - **Constants** — `true`, `false`, `EMPTY`.
-- **PAX files** — metadata keys (`name`, `version`, `author`, `deps`, …), version pins (`@1.2.0`), GitHub shortcuts, and direct URLs.
+- **PAX files** — metadata keys (`name`, `version`, `author`, `description`, `main`, `tags`, `files`, `deps`), version pins (`@1.2.0`), GitHub shortcuts, and direct URLs.
 
 ---
 
@@ -166,7 +168,7 @@ Snippets are grouped by category. Trigger them with the listed prefix.
 | `jpush` | Append to JSON array node via `.push()` |
 | `jbracket` | Set JSON array element via bracket notation |
 | `jinject` | `.inject()` — bulk import array into table |
-| `jstr` | `.to_str()` — serialize to string |
+| `jstr` | `.toStr()` — serialize to string |
 | `jsize` | `.size()` / `.count()` |
 | `jfirst` | `.first()` — first element of JSON array |
 | `jresp` | Build JSON response and yield |
@@ -225,15 +227,6 @@ Snippets are grouped by category. Trigger them with the listed prefix.
 | `strchain` | Normalization chain: trim + lower + replace |
 | `strconcat` | Integer digit concatenation `++` |
 
-### Random
-| Prefix | Description |
-|--------|-------------|
-| `randchoice` | `random.choice from` set or array |
-| `randint` | `random.int(min, max)` |
-| `randints` | `random.int(min, max @step n)` |
-| `randfloat` | `random.float(min, max)` |
-| `randfloats` | `random.float(min, max @step n)` |
-
 ### Date
 | Prefix | Description |
 |--------|-------------|
@@ -245,6 +238,14 @@ Snippets are grouped by category. Trigger them with the listed prefix.
 | `datediff` | Days between two dates |
 | `dateprop` | Access `.year`, `.month`, `.day`, `.hour`, `.minute`, `.second` |
 | `ratelimitkey` | Per-minute rate limit key from IP + timestamp |
+
+### Perf (Performance Timer)
+| Prefix | Description |
+|--------|-------------|
+| `perfms` | `perf.ms()` — elapsed milliseconds since VM start |
+| `perfus` | `perf.us()` — elapsed microseconds since VM start |
+| `perfns` | `perf.ns()` — elapsed nanoseconds since VM start |
+| `perfbench` | Benchmark block: start + end + print elapsed ms |
 
 ### Env
 | Prefix | Description |
@@ -340,7 +341,7 @@ The extension fully supports `.pax` files used by the PAX package manager.
 ### Highlighted elements in `project.pax`
 
 - **Block delimiters** `/` — opening and closing of the configuration block.
-- **Metadata keys** — `name`, `version`, `author`, `description`, `main`, `tags`, `deps`.
+- **Metadata keys** — `name`, `version`, `author`, `description`, `main`, `tags`, `files`, `deps`.
 - **String values** — all quoted strings.
 - **Version pins** — `@1.2.0` in dependency strings.
 - **Semantic version values** — `"1.0.0"` literal version strings.
@@ -362,6 +363,7 @@ PAX Project Configuration
     description :: "A quick description.",
     main        :: "src/app.xcx",
     tags        :: ["math", "utility"],
+    files       :: ["src/main.xcx", "src/lib.xcx"],
     deps        :: [
         "mathlib@1.2.0",
         "user/repo",
@@ -369,6 +371,17 @@ PAX Project Configuration
     ]
 /
 ```
+
+---
+
+## Links
+
+| | |
+|---|---|
+| 🌐 Official website | [xcxlang.com](https://xcxlang.com) |
+| 📦 PAX Registry | [pax.xcxlang.com](https://pax.xcxlang.com) |
+| ▶ Web Playground | [playground.xcxlang.com](https://playground.xcxlang.com) |
+| 🐙 GitHub | [xcxlang-org/xcx](https://github.com/xcxlang-org/xcx) |
 
 ---
 

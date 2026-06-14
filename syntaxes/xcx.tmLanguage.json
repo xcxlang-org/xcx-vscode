@@ -3,27 +3,69 @@
     "name": "XCX",
     "scopeName": "source.xcx",
     "patterns": [
-        { "include": "#comments" },
-        { "include": "#raw_blocks" },
-        { "include": "#strings" },
-        { "include": "#fiber_type" },
-        { "include": "#keywords_control" },
-        { "include": "#keywords_fiber" },
-        { "include": "#keywords_builtin" },
-        { "include": "#keywords_logical" },
-        { "include": "#keywords_set_ops" },
-        { "include": "#types" },
-        { "include": "#type_domains" },
-        { "include": "#column_attributes" },
-        { "include": "#constants" },
-        { "include": "#decorators" },
-        { "include": "#terminal_commands" },
-        { "include": "#io_operators" },
-        { "include": "#operators" },
-        { "include": "#numbers" },
-        { "include": "#builtin_modules" },
-        { "include": "#identifiers" },
-        { "include": "#punctuation" }
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#raw_blocks"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#fiber_type"
+        },
+        {
+            "include": "#keywords_control"
+        },
+        {
+            "include": "#keywords_fiber"
+        },
+        {
+            "include": "#keywords_builtin"
+        },
+        {
+            "include": "#keywords_logical"
+        },
+        {
+            "include": "#keywords_set_ops"
+        },
+        {
+            "include": "#types"
+        },
+        {
+            "include": "#type_domains"
+        },
+        {
+            "include": "#column_attributes"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#decorators"
+        },
+        {
+            "include": "#terminal_commands"
+        },
+        {
+            "include": "#io_operators"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#builtin_modules"
+        },
+        {
+            "include": "#identifiers"
+        },
+        {
+            "include": "#punctuation"
+        }
     ],
     "repository": {
         "comments": {
@@ -47,10 +89,14 @@
                     "begin": "<<<",
                     "end": ">>>",
                     "beginCaptures": {
-                        "0": { "name": "punctuation.definition.string.begin.xcx" }
+                        "0": {
+                            "name": "punctuation.definition.string.begin.xcx"
+                        }
                     },
                     "endCaptures": {
-                        "0": { "name": "punctuation.definition.string.end.xcx" }
+                        "0": {
+                            "name": "punctuation.definition.string.end.xcx"
+                        }
                     }
                 }
             ]
@@ -108,7 +154,7 @@
             "patterns": [
                 {
                     "name": "support.function.builtin.xcx",
-                    "match": "\\b(halt|alert|error|fatal|terminal|store|random|choice|input)\\b"
+                    "match": "\\b(halt|alert|error|fatal|terminal|store|random|choice|input|perf)\\b"
                 },
                 {
                     "comment": "'from' in random.choice from / yield from",
@@ -272,7 +318,7 @@
             "patterns": [
                 {
                     "name": "support.class.builtin.xcx",
-                    "match": "\\b(crypto|net|env|date|store|random|input)(?=\\.)"
+                    "match": "\\b(crypto|net|env|date|store|random|input|perf)(?=\\.)"
                 }
             ]
         },

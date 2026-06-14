@@ -17,6 +17,46 @@ function activate(context) {
     context.subscriptions.push(
         vscode.workspace.onDidCloseTextDocument(doc => diagnostics.delete(doc.uri))
     );
+
+    // ── <<< auto-expand ──────────────────────────────────────────
+    // VS Code's autoClosingPairs turns <<< into <<<>>> with cursor between them.
+    // We detect that and immediately expand it to <<<{}>>> with cursor inside {}.
+    context.subscriptions.push(
+        vscode.workspace.onDidChangeTextDocument(e => {
+            if (e.document.languageId !== 'xcx') return;
+            for (const change of e.contentChanges) {
+                // We're looking for the third '<' being typed (text === '<')
+                if (change.text !== '<') continue;
+
+                const editor = vscode.window.activeTextEditor;
+                if (!editor || editor.document !== e.document) continue;
+
+                // After VS Code processes autoClosingPairs the line now contains <<<>>>
+                // and the cursor sits between <<< and >>>
+                const cursor = editor.selection.active;
+                const lineText = editor.document.lineAt(cursor.line).text;
+                const col = cursor.character;
+
+                // Expect: ...<<<>>> where cursor is right after <<<, i.e. before >>>
+                if (lineText.slice(col - 3, col) !== '<<<') continue;
+                if (lineText.slice(col, col + 3) !== '>>>') continue;
+
+                // Replace <<<>>> with <<<{}>>> and place cursor between { and }
+                editor.edit(eb => {
+                    const range = new vscode.Range(
+                        new vscode.Position(cursor.line, col - 3),
+                        new vscode.Position(cursor.line, col + 3)
+                    );
+                    eb.replace(range, '<<<{}>>>');
+                }, { undoStopBefore: false, undoStopAfter: false }).then(() => {
+                    // cursor goes between { and }, which is at col - 3 + 4
+                    const newCol = col - 3 + 4;
+                    const newPos = new vscode.Position(cursor.line, newCol);
+                    editor.selection = new vscode.Selection(newPos, newPos);
+                });
+            }
+        })
+    );
 }
 
 function deactivate() { }
