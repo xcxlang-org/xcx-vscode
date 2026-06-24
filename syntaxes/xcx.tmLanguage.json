@@ -71,12 +71,6 @@
         "comments": {
             "patterns": [
                 {
-                    "name": "comment.block.xcx",
-                    "begin": "^\\s*---\\s*$",
-                    "end": "^\\s*\\*---\\s*$",
-                    "patterns": []
-                },
-                {
                     "name": "comment.line.xcx",
                     "match": "---.*$"
                 }

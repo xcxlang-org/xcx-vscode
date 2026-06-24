@@ -1,6 +1,6 @@
 # XCX Language Support
 
-Rich language support for the **XCX 4.0** programming language in Visual Studio Code.
+Rich language support for the **XCX 4.1** programming language in Visual Studio Code.
 
 [🌐 Website](https://xcxlang.com) · [📦 PAX Registry](https://pax.xcxlang.com) · [▶ Playground](https://playground.xcxlang.com) · [GitHub](https://github.com/xcxlang-org/xcx)
 
@@ -378,10 +378,10 @@ PAX Project Configuration
 
 | | |
 |---|---|
-| 🌐 Official website | [xcxlang.com](https://xcxlang.com) |
-| 📦 PAX Registry | [pax.xcxlang.com](https://pax.xcxlang.com) |
-| ▶ Web Playground | [playground.xcxlang.com](https://playground.xcxlang.com) |
-| 🐙 GitHub | [xcxlang-org/xcx](https://github.com/xcxlang-org/xcx) |
+| Official website | [xcxlang.com](https://xcxlang.com) |
+| PAX Registry | [pax.xcxlang.com](https://pax.xcxlang.com) |
+| Web Playground | [playground.xcxlang.com](https://playground.xcxlang.com) |
+| GitHub | [xcxlang-org/xcx](https://github.com/xcxlang-org/xcx) |
 
 ---
 

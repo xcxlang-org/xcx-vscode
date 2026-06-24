@@ -57,6 +57,24 @@ function activate(context) {
             }
         })
     );
+
+    // ── Semantic Token Comments ──────────────────────────────────
+    const tokenTypes = ['comment'];
+    const legend = new vscode.SemanticTokensLegend(tokenTypes, []);
+    context.subscriptions.push(
+        vscode.languages.registerDocumentSemanticTokensProvider(
+            { language: 'xcx' },
+            new XcxSemanticTokensProvider(),
+            legend
+        )
+    );
+    context.subscriptions.push(
+        vscode.languages.registerDocumentSemanticTokensProvider(
+            { language: 'pax' },
+            new XcxSemanticTokensProvider(),
+            legend
+        )
+    );
 }
 
 function deactivate() { }
@@ -239,6 +257,103 @@ function checkRawBlockBalance(lines, errors) {
         errors.push(makeDiag(openLine, 0, lines[openLine].length,
             "Niezamknięty blok JSON '<<<' — brakuje '>>>' do końca pliku."));
     }
+}
+
+// ── Semantic Token Comment Provider and Helpers ──────────────
+
+class XcxSemanticTokensProvider {
+    provideDocumentSemanticTokens(document, token) {
+        const tokenTypes = ['comment'];
+        const legend = new vscode.SemanticTokensLegend(tokenTypes, []);
+        const builder = new vscode.SemanticTokensBuilder(legend);
+        const lines = [];
+        for (let i = 0; i < document.lineCount; i++) {
+            lines.push(document.lineAt(i).text);
+        }
+
+        let i = 0;
+        while (i < lines.length) {
+            const lineText = lines[i];
+            const trimmed = lineText.trim();
+
+            if (trimmed === '---') {
+                let foundClose = false;
+                let foundInterveningStart = false;
+
+                for (let j = i + 1; j < lines.length; j++) {
+                    const nextTrimmed = lines[j].trim();
+                    if (nextTrimmed === '*---') {
+                        foundClose = true;
+                        break;
+                    }
+                    if (nextTrimmed === '---') {
+                        foundInterveningStart = true;
+                        break;
+                    }
+                }
+
+                if (foundClose && !foundInterveningStart) {
+                    while (i < lines.length) {
+                        const currentLineText = lines[i];
+                        builder.push(
+                            new vscode.Range(
+                                new vscode.Position(i, 0),
+                                new vscode.Position(i, currentLineText.length)
+                            ),
+                            'comment'
+                        );
+                        if (currentLineText.trim() === '*---') {
+                            break;
+                        }
+                        i++;
+                    }
+                } else {
+                    builder.push(
+                        new vscode.Range(
+                            new vscode.Position(i, 0),
+                            new vscode.Position(i, lineText.length)
+                        ),
+                        'comment'
+                    );
+                }
+            } else {
+                const commentIdx = getCommentStartIndex(lineText);
+                if (commentIdx !== -1) {
+                    builder.push(
+                        new vscode.Range(
+                            new vscode.Position(i, commentIdx),
+                            new vscode.Position(i, lineText.length)
+                        ),
+                        'comment'
+                    );
+                }
+            }
+            i++;
+        }
+
+        return builder.build();
+    }
+}
+
+function getCommentStartIndex(line) {
+    let inStr = false;
+    for (let i = 0; i < line.length - 2; i++) {
+        if (line[i] === '"') {
+            let escape = false;
+            let checkIdx = i - 1;
+            while (checkIdx >= 0 && line[checkIdx] === '\\') {
+                escape = !escape;
+                checkIdx--;
+            }
+            if (!escape) {
+                inStr = !inStr;
+            }
+        }
+        if (!inStr && line[i] === '-' && line[i + 1] === '-' && line[i + 2] === '-') {
+            return i;
+        }
+    }
+    return -1;
 }
 
 module.exports = { activate, deactivate };

@@ -32,12 +32,6 @@
         "comments": {
             "patterns": [
                 {
-                    "name": "comment.block.pax",
-                    "begin": "^\\s*---\\s*$",
-                    "end": "^\\s*\\*---\\s*$",
-                    "patterns": []
-                },
-                {
                     "name": "comment.line.pax",
                     "match": "---.*$"
                 }

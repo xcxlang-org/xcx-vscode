@@ -1,8 +1,8 @@
 {
     "name": "xcx-vscode",
     "displayName": "XCX Language Support",
-    "description": "Rich language support for XCX 4.0 — syntax highlighting, snippets, diagnostics (missing semicolons, unclosed blocks, database, terminal, input, perf).",
-    "version": "4.0.0",
+    "description": "Rich language support for XCX 4.1 — syntax highlighting, snippets, diagnostics (missing semicolons, unclosed blocks, database, terminal, input, perf).",
+    "version": "4.1.0",
     "publisher": "xcx-lang",
     "repository": {
         "type": "git",
@@ -25,7 +25,7 @@
     "keywords": [
         "xcx",
         "xcx4",
-        "xcx4.0",
+        "xcx4.1",
         "programming language",
         "fiber",
         "coroutine",
