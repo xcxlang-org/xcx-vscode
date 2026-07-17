@@ -1,6 +1,6 @@
 # XCX Language Support
 
-Rich language support for the **XCX 4.1** programming language in Visual Studio Code.
+Rich language support for the **XCX 4.2** programming language in Visual Studio Code.
 
 [🌐 Website](https://xcxlang.com) · [📦 PAX Registry](https://pax.xcxlang.com) · [▶ Playground](https://playground.xcxlang.com) · [GitHub](https://github.com/xcxlang-org/xcx)
 
