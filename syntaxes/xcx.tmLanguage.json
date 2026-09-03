@@ -31,6 +31,9 @@
             "include": "#keywords_set_ops"
         },
         {
+            "include": "#builtin_modules"
+        },
+        {
             "include": "#types"
         },
         {
@@ -56,9 +59,6 @@
         },
         {
             "include": "#numbers"
-        },
-        {
-            "include": "#builtin_modules"
         },
         {
             "include": "#identifiers"
@@ -103,8 +103,8 @@
                     "end": "\"",
                     "patterns": [
                         {
-                            "name": "constant.character.escape.xcx",
-                            "match": "\\\\[ntr\"\\\\]"
+                        "name": "constant.character.escape.xcx",
+                        "match": "\\\\(?:[ntr\"\\\\]|x[0-9a-fA-F]{2}|[0-7]{3})"
                         }
                     ]
                 }
@@ -312,7 +312,7 @@
             "patterns": [
                 {
                     "name": "support.class.builtin.xcx",
-                    "match": "\\b(crypto|net|env|date|store|random|input|perf)(?=\\.)"
+                    "match": "\\b(crypto|net|env|date|store|random|input|perf|json)(?=\\.)"
                 }
             ]
         },

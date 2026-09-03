@@ -1,6 +1,6 @@
 # XCX Language Support
 
-Rich language support for the **XCX 4.2** programming language in Visual Studio Code.
+Rich language support for the **XCX 4.3** programming language in Visual Studio Code.
 
 [🌐 Website](https://xcxlang.com) · [📦 PAX Registry](https://pax.xcxlang.com) · [▶ Playground](https://playground.xcxlang.com) · [GitHub](https://github.com/xcxlang-org/xcx) · [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xcxlang-org.xcx-vscode) · [Open VSX](https://open-vsx.org/extension/xcxlang-org/xcx-vscode)
 
@@ -44,5 +44,3 @@ Install from the [Open VSX Registry page](https://open-vsx.org/extension/xcxlang
 5. Choose the downloaded `.vsix` file.
 
 ---
-
-*(Reszta oryginalnej dokumentacji — snippets, diagnostics, PAX support — pozostaje bez zmian, dodałem tylko linki do Marketplace i Open VSX w nagłówku, tabeli Links i sekcji Installation.)*

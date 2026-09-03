@@ -59,19 +59,18 @@ function activate(context) {
     );
 
     // ── Semantic Token Comments ──────────────────────────────────
-    const tokenTypes = ['comment'];
-    const legend = new vscode.SemanticTokensLegend(tokenTypes, []);
+    const legend = new vscode.SemanticTokensLegend(['comment'], []);
     context.subscriptions.push(
         vscode.languages.registerDocumentSemanticTokensProvider(
             { language: 'xcx' },
-            new XcxSemanticTokensProvider(),
+            new XcxSemanticTokensProvider(legend),
             legend
         )
     );
     context.subscriptions.push(
         vscode.languages.registerDocumentSemanticTokensProvider(
             { language: 'pax' },
-            new XcxSemanticTokensProvider(),
+            new XcxSemanticTokensProvider(legend),
             legend
         )
     );
@@ -129,7 +128,7 @@ function endCol(raw) { return raw.trimEnd().length; }
 
 function checkMissingSemicolon(trimmed, raw, i, errors) {
     const skip = [
-        /^\{$/, /\{$/, /^end[;\s]/, /^end$/, /^\};/, /^\}$/,
+        /\{$/, /^end[;\s]/, /^end$/, /^\};/, /^\}$/,
         /^---/, /^<<</, /^>>>/, /^serve:/, /^table:/, /^map:/,
         /^database:/, /^columns\s*=/, /^rows\s*=/, /^schema\s*=/, /^data\s*=/,
         /^port\s*=/, /^host\s*=/, /^workers\s*=/, /^routes\s*=/,
@@ -262,10 +261,12 @@ function checkRawBlockBalance(lines, errors) {
 // ── Semantic Token Comment Provider and Helpers ──────────────
 
 class XcxSemanticTokensProvider {
+    constructor(legend) {
+        this.legend = legend;
+    }
+
     provideDocumentSemanticTokens(document, token) {
-        const tokenTypes = ['comment'];
-        const legend = new vscode.SemanticTokensLegend(tokenTypes, []);
-        const builder = new vscode.SemanticTokensBuilder(legend);
+        const builder = new vscode.SemanticTokensBuilder(this.legend);
         const lines = [];
         for (let i = 0; i < document.lineCount; i++) {
             lines.push(document.lineAt(i).text);
