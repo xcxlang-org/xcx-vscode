@@ -3,7 +3,7 @@
 All notable changes to this extension are documented here.
 Version numbers follow the supported XCX language version.
 
-## [4.4.0] - Unreleased
+## [4.4.0] - 2026-09-16
 
 XCX 4.4 support.
 
