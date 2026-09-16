@@ -67,15 +67,19 @@
             ">>>"
         ]
     ],
+    "indentationRules": {
+        "increaseIndentPattern": "^\\s*.*\\b(then|do)\\s*;?\\s*$|^\\s*.*\\{\\s*;?\\s*$|^\\s*.*\\[\\s*$|^\\s*else\\s*;?\\s*$",
+        "decreaseIndentPattern": "^\\s*(end\\s*;?|\\}\\s*;?|\\]\\s*;?|else\\s*;?)\\s*$"
+    },
     "onEnterRules": [
         {
-            "beforeText": "\\b(then|do|\\{)\\s*;\\s*$",
+            "beforeText": "\\b(then|do)\\s*;?\\s*$|\\{\\s*;?\\s*$",
             "action": {
                 "indent": "indent"
             }
         },
         {
-            "beforeText": "^\\s*(end|\\});?\\s*$",
+            "beforeText": "^\\s*(end|\\})\\s*;?\\s*$",
             "action": {
                 "indent": "outdent"
             }
@@ -84,7 +88,7 @@
     "folding": {
         "markers": {
             "start": "\\b(func|fiber|if|while|for|serve)\\b",
-            "end": "^\\s*(end;|\\};)"
+            "end": "^\\s*(end|\\})\\s*;?"
         }
     },
     "wordPattern": "[a-zA-Z][a-zA-Z0-9_]*"

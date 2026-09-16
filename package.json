@@ -1,8 +1,8 @@
 {
     "name": "xcx-vscode",
     "displayName": "XCX Language Support",
-    "description": "Rich language support for XCX 4.3 — syntax highlighting, snippets, diagnostics (missing semicolons, unclosed blocks, database, terminal, input, perf).",
-    "version": "4.3.0",
+    "description": "Rich language support for XCX 4.4 — syntax highlighting, hover documentation, outline, snippets, diagnostics.",
+    "version": "4.4.0",
     "publisher": "xcxlang-org",
     "repository": {
         "type": "git",
@@ -25,8 +25,7 @@
     "keywords": [
         "xcx",
         "xcx4",
-        "xcx4.2",
-        "xcx4.3",
+        "xcx4.4",
         "programming language",
         "fiber",
         "coroutine",
@@ -41,6 +40,16 @@
     ],
     "main": "./extension.js",
     "contributes": {
+        "configuration": {
+            "title": "XCX",
+            "properties": {
+                "xcx.linter.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable real-time XCX diagnostics (missing semicolons, missing then;/do;, unclosed <<< blocks, malformed yield from)."
+                }
+            }
+        },
         "languages": [
             {
                 "id": "xcx",
@@ -107,6 +116,7 @@
         "package": "vsce package"
     },
     "devDependencies": {
-        "@vscode/vsce": "^2.19.0"
+        "@vscode/vsce": "^2.19.0",
+        "ovsx": "^1.1.1"
     }
 }

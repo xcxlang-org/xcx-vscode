@@ -1,15 +1,17 @@
 # XCX Language Support
 
-Rich language support for the **XCX 4.3** programming language in Visual Studio Code.
+Rich language support for the **XCX 4.4** programming language in Visual Studio Code.
 
 [🌐 Website](https://xcxlang.com) · [📦 PAX Registry](https://pax.xcxlang.com) · [▶ Playground](https://playground.xcxlang.com) · [GitHub](https://github.com/xcxlang-org/xcx) · [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=xcxlang-org.xcx-vscode) · [Open VSX](https://open-vsx.org/extension/xcxlang-org/xcx-vscode)
 
 ## Features
 
-- **Syntax Highlighting** — comprehensive highlighting for all XCX keywords, types, operators, literals, column attributes (`@pk`, `@unique`, `@optional`, `@default`, `@fk`), terminal commands, and the `input` module.
+- **Syntax Highlighting** — comprehensive highlighting for all XCX keywords, types, operators, literals, column attributes (`@pk`, `@unique`, `@optional`, `@default`, `@fk`), terminal commands, and the `input` module. JSON inside `<<< ... >>>` raw blocks is highlighted as JSON.
+- **Hover Documentation** — hover over keywords, types, built-in modules (`net`, `store`, `crypto`, ...), column attributes and operators (`>!`, `>?`, `->`, `::`, `++`) for inline reference docs.
+- **Outline / Document Symbols** — functions, fibers, constants and `serve:` / `database:` / `table:` / `map:` blocks appear in the Outline view and breadcrumbs.
 - **Snippets** — handy snippets for all language constructs (see list below).
-- **Diagnostics (Linter)** — real-time detection of common errors: missing semicolons, missing `then;`/`do;`, unclosed `<<<` blocks, malformed `yield from`, and more.
-- **Language Configuration** — bracket matching, auto-closing pairs, comment toggling (`---`), and smart indentation.
+- **Diagnostics (Linter)** — real-time detection of common errors: missing `then`/`do`, missing statement semicolons, unclosed `<<<` blocks, malformed `yield from`, plus deprecation warnings for semicolons after block terminators (`end;`, `then;`, `do;`, `else;`, `};`) — optional in XCX 4.4, removed in XCX 5.0. Can be disabled with the `xcx.linter.enabled` setting.
+- **Language Configuration** — bracket matching, auto-closing pairs, comment toggling (`---`), and smart indentation (`then;`/`do;`/`{` indent on Enter, `end;`/`};`/`else;` dedent).
 - **File Icons** — custom icons for `.xcx` and `.pax` files.
 - **PAX Support** — full syntax highlighting for `project.pax` and `pax.lock` files including version pins, GitHub shortcuts, dependency URLs, and metadata fields.
 

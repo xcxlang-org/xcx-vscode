@@ -46,7 +46,7 @@
         "body": [
             "func ${1:name}(${2:s: param}) {",
             "    ${0}",
-            "};"
+            "}"
         ],
         "description": "Function without return value"
     },
@@ -56,7 +56,7 @@
             "func ${1:name}(${2:s: param} -> ${3:i}) {",
             "    ${0}",
             "    return ${4:value};",
-            "};"
+            "}"
         ],
         "description": "Function with return value"
     },
@@ -65,7 +65,7 @@
         "body": [
             "func ${1:name}(-> ${2:i}) {",
             "    return ${0};",
-            "};"
+            "}"
         ],
         "description": "Function without params, with return"
     },
@@ -74,7 +74,7 @@
         "body": [
             "func ${1:name}() {",
             "    ${0}",
-            "};"
+            "}"
         ],
         "description": "Void function without params"
     },
@@ -91,7 +91,7 @@
             "fiber ${1:name}(${2:s: param} -> ${3:json}) {",
             "    ${0}",
             "    yield ${4:value};",
-            "};"
+            "}"
         ],
         "description": "Typed fiber — yield returns value"
     },
@@ -101,7 +101,7 @@
             "fiber ${1:name}(${2:s: param}) {",
             "    ${0}",
             "    yield;",
-            "};"
+            "}"
         ],
         "description": "Void fiber — yield without value"
     },
@@ -111,7 +111,7 @@
             "fiber ${1:handle_name}(json: req -> json) {",
             "    ${0}",
             "    yield net.respond(200, <<< {\"status\": \"ok\"} >>>);",
-            "};"
+            "}"
         ],
         "description": "HTTP handler fiber — signature required by serve:"
     },
@@ -140,26 +140,26 @@
             "",
             "    fiber:${4}: ${7:step2} = ${8:check_two}(${2});",
             "    yield ${7}.next();",
-            "};"
+            "}"
         ],
         "description": "Fiber calling other fibers (pipeline pattern)"
     },
     "Fiber loop (.isDone)": {
         "prefix": "fiberloop",
         "body": [
-            "while (${1:f}.isDone() == false) do;",
+            "while (${1:f}.isDone() == false) do",
             "    ${2:type}: ${3:val} = ${1}.next();",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "Consume fiber until done"
     },
     "For over fiber": {
         "prefix": "forfib",
         "body": [
-            "for ${1:val} in ${2:f} do;",
+            "for ${1:val} in ${2:f} do",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "for loop over fiber (auto-calls .next, .close on break)"
     },
@@ -195,50 +195,50 @@
     "If": {
         "prefix": "if",
         "body": [
-            "if (${1:condition}) then;",
+            "if (${1:condition}) then",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "If statement"
     },
     "If-Else": {
         "prefix": "ifelse",
         "body": [
-            "if (${1:condition}) then;",
+            "if (${1:condition}) then",
             "    ${2}",
-            "else;",
+            "else",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "If-else statement"
     },
     "If-Elif-Else": {
         "prefix": "ifelif",
         "body": [
-            "if (${1:condition}) then;",
+            "if (${1:condition}) then",
             "    ${2}",
-            "elif (${3:condition2}) then;",
+            "elif (${3:condition2}) then",
             "    ${4}",
-            "else;",
+            "else",
             "    ${0}",
-            "end;"
+            "end"
         ],
-        "description": "If-elif-else (also: elf, els aliases)"
+        "description": "If-elif-else statement"
     },
     "If inline guard": {
         "prefix": "ifg",
         "body": [
-            "if (${1:!ok}) then; ${0}; end;"
+            "if (${1:!ok}) then ${0}; end"
         ],
         "description": "Single-line inline guard"
     },
     "If guard — yield error + return": {
         "prefix": "ifguard",
         "body": [
-            "if (!${1:ok}) then;",
+            "if (!${1:ok}) then",
             "    yield net.respond(${2:401}, <<< {\"error\": \"${3:Unauthorized}\"} >>>);",
             "    return;",
-            "end;"
+            "end"
         ],
         "description": "Auth/validation guard with early return"
     },
@@ -252,46 +252,46 @@
     "While": {
         "prefix": "while",
         "body": [
-            "while (${1:condition}) do;",
+            "while (${1:condition}) do",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "While loop"
     },
     "For (range)": {
         "prefix": "forr",
         "body": [
-            "for ${1:i} in ${2:0} to ${3:n} do;",
+            "for ${1:i} in ${2:0} to ${3:n} do",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "For loop — inclusive range [start, end]"
     },
     "For (range with @step)": {
         "prefix": "forrs",
         "body": [
-            "for ${1:i} in ${2:0} to ${3:n} @step ${4:2} do;",
+            "for ${1:i} in ${2:0} to ${3:n} @step ${4:2} do",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "For loop with step"
     },
     "For (collection)": {
         "prefix": "forin",
         "body": [
-            "for ${1:item} in ${2:collection} do;",
+            "for ${1:item} in ${2:collection} do",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "For loop over array, set or fiber"
     },
     "For (index over array)": {
         "prefix": "foridx",
         "body": [
-            "for ${1:i} in 0 to (${2:arr}.size() - 1) do;",
+            "for ${1:i} in 0 to (${2:arr}.size() - 1) do",
             "    ${3:type}: ${4:val} = ${2}.get(${1});",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "For loop with explicit index"
     },
@@ -315,7 +315,7 @@
             "        \"OPTIONS *\"               :: handle_options,",
             "        \"*\"                       :: handle_404",
             "    ]",
-            "};"
+            "}"
         ],
         "description": "HTTP serve block — terminal expression"
     },
@@ -350,7 +350,7 @@
             "        \"Access-Control-Allow-Methods\" :: \"GET, POST, DELETE, PATCH, OPTIONS\",",
             "        \"Access-Control-Allow-Headers\" :: \"Content-Type, Authorization, X-CSRF-TOKEN\"",
             "    ]);",
-            "};"
+            "}"
         ],
         "description": "CORS OPTIONS preflight handler"
     },
@@ -359,7 +359,7 @@
         "body": [
             "fiber handle_404(json: req -> json) {",
             "    yield net.respond(404, <<< {\"error\": \"Not found\"} >>>);",
-            "};"
+            "}"
         ],
         "description": "404 fallback handler"
     },
@@ -418,15 +418,15 @@
     "Check net response (ok guard)": {
         "prefix": "netcheck",
         "body": [
-            "if (${1:resp}.exists(\"ok\") AND ${1:resp}.get(\"ok\")) then;",
+            "if (${1:resp}.exists(\"ok\") AND ${1:resp}.get(\"ok\")) then",
             "    ${0}",
-            "else;",
+            "else",
             "    s: ${2:err_msg};",
-            "    if (${1:resp}.exists(\"error\")) then;",
+            "    if (${1:resp}.exists(\"error\")) then",
             "        ${1:resp}.bind(\"error\", ${2:err_msg});",
-            "    end;",
+            "    end",
             "    halt.alert >! \"Request failed: \" + ${2:err_msg};",
-            "end;"
+            "end"
         ],
         "description": "Guard on net.get/post response .ok field"
     },
@@ -443,7 +443,7 @@
             "database: ${1:app} {",
             "    engine = \"sqlite\",",
             "    path   = \"${2:data.db}\"",
-            "};"
+            "}"
         ],
         "description": "SQLite database connection declaration"
     },
@@ -455,7 +455,7 @@
             "    path     = \"${2:data.db}\",",
             "    timeout  = ${3:5000},",
             "    readonly = ${4:false}",
-            "};"
+            "}"
         ],
         "description": "SQLite database connection with all options"
     },
@@ -589,9 +589,9 @@
         "body": [
             "${1:app}.begin();",
             "b: ${2:valid} = ${3:validate}();",
-            "if (NOT ${2:valid}) then;",
+            "if (NOT ${2:valid}) then",
             "    ${1:app}.rollback();",
-            "end;",
+            "end",
             "yield ${1:app}.save(${4:table_name});",
             "${1:app}.commit();"
         ],
@@ -614,7 +614,7 @@
             "        ${2:field} :: ${3|s,i,f,b|} ${4:@unique}",
             "    ]",
             "    rows = [EMPTY]",
-            "};"
+            "}"
         ],
         "description": "Table definition with @pk for database use"
     },
@@ -628,7 +628,7 @@
             "        ${4:title}   :: s",
             "    ]",
             "    rows = [EMPTY]",
-            "};"
+            "}"
         ],
         "description": "Table with foreign key column"
     },
@@ -657,7 +657,7 @@
             "        ${2:field} :: ${3:s}",
             "    ]",
             "    rows = [EMPTY]",
-            "};"
+            "}"
         ],
         "description": "Empty table with @auto id"
     },
@@ -673,7 +673,7 @@
             "    rows = [",
             "        (\"${4:Item}\", ${5:9.99})",
             "    ]",
-            "};"
+            "}"
         ],
         "description": "Table with initial rows"
     },
@@ -790,14 +790,14 @@
             "i: ${1:found_idx} = -1;",
             "i: ${2:total} = ${3:tbl}.count();",
             "i: ${4:fi} = 0;",
-            "while (${4:fi} < ${2:total}) do;",
-            "    if (${3:tbl}.get(${4:fi}).${5:id} == ${6:target}) then;",
+            "while (${4:fi} < ${2:total}) do",
+            "    if (${3:tbl}.get(${4:fi}).${5:id} == ${6:target}) then",
             "        ${1:found_idx} = ${4:fi};",
             "        break;",
-            "    end;",
+            "    end",
             "    ${4:fi} = ${4:fi} + 1;",
-            "end;",
-            "if (${1:found_idx} == -1) then; ${0}; end;"
+            "end",
+            "if (${1:found_idx} == -1) then ${0}; end"
         ],
         "description": "Find row index by field value (returns -1 if not found)"
     },
@@ -840,9 +840,9 @@
     "JSON .exists()": {
         "prefix": "jexists",
         "body": [
-            "if (${1:obj}.exists(\"${2:key}\")) then;",
+            "if (${1:obj}.exists(\"${2:key}\")) then",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "Check if JSON key exists before binding"
     },
@@ -867,7 +867,7 @@
             "map: ${1:mapping} {",
             "    schema = [s <-> s]",
             "    data   = [\"${2:col}\" :: \"${3:json_key}\"]",
-            "};",
+            "}",
             "${4:json_obj}.inject(\"${5:array_key}\", ${1:mapping}, ${6:tbl});"
         ],
         "description": "Bulk import JSON array into XCX table"
@@ -920,14 +920,14 @@
     "Array declaration": {
         "prefix": "array",
         "body": [
-            "array:${1|i,f,s,b,json|}: ${2:name} {${0}};"
+            "array:${1|i,f,s,b,json|}: ${2:name} {${0}}"
         ],
         "description": "Array declaration (includes array:json)"
     },
     "Array empty": {
         "prefix": "arraye",
         "body": [
-            "array:${1|i,f,s,b,json|}: ${2:name} {};"
+            "array:${1|i,f,s,b,json|}: ${2:name} {}"
         ],
         "description": "Empty array"
     },
@@ -936,11 +936,11 @@
         "body": [
             "i: ${1:size} = ${2:arr}.size();",
             "i: ${3:idx} = 0;",
-            "while (${3:idx} < ${1:size}) do;",
+            "while (${3:idx} < ${1:size}) do",
             "    json: ${4:item} = ${2:arr}.get(${3:idx});",
             "    ${0}",
             "    ${3:idx} = ${3:idx} + 1;",
-            "end;"
+            "end"
         ],
         "description": "Iterate over array:json with index"
     },
@@ -954,49 +954,49 @@
     "Set (range)": {
         "prefix": "setr",
         "body": [
-            "set:${1|N,Z,Q,C|}: ${2:name} {${3:1},,${4:10}};"
+            "set:${1|N,Z,Q,C|}: ${2:name} {${3:1},,${4:10}}"
         ],
         "description": "Set with inclusive range"
     },
     "Set (range with @step)": {
         "prefix": "setrs",
         "body": [
-            "set:${1|N,Z,Q|}: ${2:name} {${3:0},,${4:100} @step ${5:2}};"
+            "set:${1|N,Z,Q|}: ${2:name} {${3:0},,${4:100} @step ${5:2}}"
         ],
         "description": "Set with range and step"
     },
     "Set (explicit)": {
         "prefix": "sete",
         "body": [
-            "set:${1|N,Z,Q,S,B,C|}: ${2:name} {${0}};"
+            "set:${1|N,Z,Q,S,B,C|}: ${2:name} {${0}}"
         ],
         "description": "Set with explicit elements"
     },
     "Set operation (UNION)": {
         "prefix": "setunion",
         "body": [
-            "set:${1:N}: ${2:result} = ${3:setA} UNION ${4:setB};"
+            "set:${1:N}: ${2:result} = ${3:setA} UNION ${4:setB}"
         ],
         "description": "Set union — A ∪ B"
     },
     "Set operation (INTERSECTION)": {
         "prefix": "setintersect",
         "body": [
-            "set:${1:N}: ${2:result} = ${3:setA} INTERSECTION ${4:setB};"
+            "set:${1:N}: ${2:result} = ${3:setA} INTERSECTION ${4:setB}"
         ],
         "description": "Set intersection — A ∩ B"
     },
     "Set operation (DIFFERENCE)": {
         "prefix": "setdiff",
         "body": [
-            "set:${1:N}: ${2:result} = ${3:setA} DIFFERENCE ${4:setB};"
+            "set:${1:N}: ${2:result} = ${3:setA} DIFFERENCE ${4:setB}"
         ],
         "description": "Set difference — A \\ B"
     },
     "Set operation (SYMMETRIC_DIFFERENCE)": {
         "prefix": "setsymdiff",
         "body": [
-            "set:${1:N}: ${2:result} = ${3:setA} SYMMETRIC_DIFFERENCE ${4:setB};"
+            "set:${1:N}: ${2:result} = ${3:setA} SYMMETRIC_DIFFERENCE ${4:setB}"
         ],
         "description": "Symmetric difference — A ⊕ B"
     },
@@ -1024,9 +1024,9 @@
     "For over set": {
         "prefix": "forset",
         "body": [
-            "for ${1:el} in ${2:mySet} do;",
+            "for ${1:el} in ${2:mySet} do",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "Iterate over all elements in a set"
     },
@@ -1085,7 +1085,7 @@
             "map: ${1:name} {",
             "    schema = [${2:s} <-> ${3:i}]",
             "    data   = [EMPTY]",
-            "};"
+            "}"
         ],
         "description": "Empty map"
     },
@@ -1097,17 +1097,17 @@
             "    data   = [",
             "        \"${4:key}\" :: ${5:value}",
             "    ]",
-            "};"
+            "}"
         ],
         "description": "Map with initial data"
     },
     "Map safe get": {
         "prefix": "mapget",
         "body": [
-            "if (${1:m}.contains(${2:key})) then;",
+            "if (${1:m}.contains(${2:key})) then",
             "    ${3:type}: ${4:val} = ${1:m}.get(${2:key});",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "Safe map access with .contains() guard"
     },
@@ -1244,10 +1244,10 @@
     "Safe divide": {
         "prefix": "safediv",
         "body": [
-            "if (${1:divisor} == 0) then;",
+            "if (${1:divisor} == 0) then",
             "    halt.error >! \"Division by zero in ${2:context}\";",
             "    return ${3:-1};",
-            "end;",
+            "end",
             "${4:type}: ${5:result} = ${6:num} / ${1:divisor};"
         ],
         "description": "Guard against division by zero"
@@ -1269,10 +1269,10 @@
     "store.read (safe)": {
         "prefix": "storeread",
         "body": [
-            "if (store.exists(\"${1:file.txt}\")) then;",
+            "if (store.exists(\"${1:file.txt}\")) then",
             "    s: ${2:content} = store.read(\"${1:file.txt}\");",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "Read file with exists() guard"
     },
@@ -1477,9 +1477,9 @@
         "prefix": "envargsloop",
         "body": [
             "array:s: ${1:args} = env.args();",
-            "for ${2:arg} in ${1:args} do;",
+            "for ${2:arg} in ${1:args} do",
             "    >! ${2:arg};",
-            "end;"
+            "end"
         ],
         "description": "Get and iterate over CLI arguments"
     },
@@ -1515,17 +1515,17 @@
         "prefix": "inputhandle",
         "body": [
             "s: ${1:k} = input.key();",
-            "if (${1:k} == \"UP\") then;",
+            "if (${1:k} == \"UP\") then",
             "    ${2:y} = ${2:y} - 1;",
-            "elif (${1:k} == \"DOWN\") then;",
+            "elif (${1:k} == \"DOWN\") then",
             "    ${2:y} = ${2:y} + 1;",
-            "elif (${1:k} == \"LEFT\") then;",
+            "elif (${1:k} == \"LEFT\") then",
             "    ${3:x} = ${3:x} - 1;",
-            "elif (${1:k} == \"RIGHT\") then;",
+            "elif (${1:k} == \"RIGHT\") then",
             "    ${3:x} = ${3:x} + 1;",
-            "elif (${1:k} == \"ESC\") then;",
+            "elif (${1:k} == \"ESC\") then",
             "    ${0}",
-            "end;"
+            "end"
         ],
         "description": "Arrow key + ESC input handler"
     },
@@ -1602,17 +1602,17 @@
             "i: ${1:x} = 0;",
             "i: ${2:y} = 0;",
             "",
-            "while (true) do;",
+            "while (true) do",
             "    s: ${3:k} = input.key();",
-            "    if (${3:k} == \"ESC\") then; break; end;",
-            "    if (${3:k} == \"UP\") then; ${2:y} = ${2:y} - 1; end;",
-            "    if (${3:k} == \"DOWN\") then; ${2:y} = ${2:y} + 1; end;",
-            "    if (${3:k} == \"LEFT\") then; ${1:x} = ${1:x} - 1; end;",
-            "    if (${3:k} == \"RIGHT\") then; ${1:x} = ${1:x} + 1; end;",
+            "    if (${3:k} == \"ESC\") then break; end",
+            "    if (${3:k} == \"UP\") then ${2:y} = ${2:y} - 1; end",
+            "    if (${3:k} == \"DOWN\") then ${2:y} = ${2:y} + 1; end",
+            "    if (${3:k} == \"LEFT\") then ${1:x} = ${1:x} - 1; end",
+            "    if (${3:k} == \"RIGHT\") then ${1:x} = ${1:x} + 1; end",
             "    .terminal !move ${1:x} ${2:y};",
             "    .terminal !write \"${4:@}\";",
             "    @wait ${5:16};",
-            "end;",
+            "end",
             "",
             ".terminal !cursor on;",
             ".terminal !normal;"

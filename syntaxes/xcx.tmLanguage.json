@@ -91,7 +91,12 @@
                         "0": {
                             "name": "punctuation.definition.string.end.xcx"
                         }
-                    }
+                    },
+                    "patterns": [
+                        {
+                            "include": "source.json"
+                        }
+                    ]
                 }
             ]
         },
@@ -128,7 +133,7 @@
             "patterns": [
                 {
                     "name": "keyword.control.xcx",
-                    "match": "\\b(if|then|elseif|elif|elf|else|els|end|while|do|for|in|to|break|continue|return|include|as|yield|serve|const)\\b"
+                    "match": "\\b(if|then|elseif|elif|else|end|while|do|for|in|to|break|continue|return|include|as|yield|serve|const)\\b"
                 }
             ]
         },

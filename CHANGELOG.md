@@ -3,6 +3,27 @@
 All notable changes to this extension are documented here.
 Version numbers follow the supported XCX language version.
 
+## [4.4.0] - Unreleased
+
+XCX 4.4 support.
+
+### Added
+- Hover documentation for XCX keywords, types, built-in modules, column attributes and operators (plus PAX manifest fields).
+- Document symbol provider — functions, fibers, constants and `serve:`/`database:`/`table:`/`map:` blocks now appear in the Outline view and breadcrumbs.
+- `xcx.linter.enabled` setting to turn the real-time diagnostics off.
+- JSON syntax highlighting inside `<<< ... >>>` raw blocks (embeds the built-in JSON grammar).
+- Indentation rules: pressing Enter after `then`/`do`/`{`/`[` increases indent; `end`, `}`, `]`, `else` dedent — with or without the (now optional) trailing semicolon.
+- Deprecation warnings for semicolons after block terminators (`end;`, `then;`, `do;`, `else;`, `};`) — optional in XCX 4.4, removed in XCX 5.0.
+
+### Changed
+- Diagnostic messages are now in English (previously Polish).
+- The linter no longer requires a semicolon after single-line block declarations — `array:`, `set:`, `map:`, `table:` and `database:` with an inline `{ ... }` body are complete without one (block-terminator rules apply).
+- All snippets use the XCX 4.4 style — no semicolons after `end`, `then`, `do`, `else` or block closers.
+- `ovsx` moved from `dependencies` to `devDependencies` — it is a publishing tool and is no longer packaged into the VSIX.
+
+### Removed
+- Support for the `els` and `elf` aliases (use `else` and `elif`).
+
 ## [4.3.0] - 2026-09-01
 
 ### Added
